@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     product = Product.objects.order_by("-list_date").filter(is_published=True)
     # product = Product.objects.all()
-    paginator = Paginator(product, 12)
+    paginator = Paginator(product, 6)
     page = request.GET.get("page")
     product_per_page = paginator.get_page(page)
 
