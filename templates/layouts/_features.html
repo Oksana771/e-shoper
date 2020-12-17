@@ -4,33 +4,20 @@
   <h2 class="title text-center">Features Items</h2>
 
   {% if product %} {% for product in product %}
-  <div class="col-sm-4">
+   <div class="col-sm-4">
     <div class="product-image-wrapper">
       <div class="single-products">
         <div class="productinfo text-center">
           <img src="{{ product.photo_main.url }}" alt="{{product.tittle}}" />
           <h2>${{ product.price }}</h2>
           <p>{{ product.tittle }}</p>
-          <a href="#" class="btn btn-default add-to-cart"
-            ><i class="fa fa-shopping-cart"></i>Add to cart</a
-          >
-        </div>
-        <div class="product-overlay">
-          <div class="overlay-content">
-            <h2>${{ product.sale }}</h2>
-            <p>{{ product.tittle }}</p>
-            <a href="#" class="btn btn-default add-to-cart"
-              ><i class="fa fa-shopping-cart"></i>Add to cart</a
-            >
-          </div>
+          <a class="btn btn-default add-to-cart"  href="{% url 'cart' product.id %}">
+            <i class="fa fa-shopping-cart" ></i>Add to cart</a>
         </div>
       </div>
     </div>
     <div class="choose">
       <ul class="nav nav-pills nav-justified">
-        <li>
-          <a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a>
-        </li>
         <li>
           <a href="#"><i class="fa fa-plus-square"></i>Add to compare</a>
         </li>
@@ -43,17 +30,44 @@
   </div>
   {% endif %}
 </li>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
-        </div>
-    </div>
+<li class="page-item disabled">
+  <a class="page-link">&laquo</a>
+</li>
 
+<nav aria-label="Page navigation example">
+
+  <ul class="pagination">
+    {% if listings.has_previous %}
+      <li class="page-item">
+        <a href="?page={{ listings.previous_page_number }}" class="page-link">&laquo;</a>
+      </li>
+    {% else %}
+     <li class="disabled"><a href="#">&laquo;</a></li>
+    {% endif %}
+  {% for i in product.paginator.page_range %}
+    {% if listings.number == i %}
+      <li class="page-item active" >
+        <a  class="page-link">{{ i }}</a>
+      </li>
+    {% else %}
+    <li class="page-item" >
+        <a href="?page={{i}}" class="page-link">{{ i }}</a>
+      </li>
+    {% endif %}
+
+  {% endfor %}
+  {% if listings.has_next %}
+    <li class="page-item">
+      <a href="?page={{ listings.next_page_number }}" class="page-link">&raquo;</a>
+    </li>
+    {% else %}
+      <li class="disabled"><a href="#">&raquo;</a></li>
+    {% endif %}
+  </ul>
+
+</nav>
+
+</div>
+</div>
 </div>
 <!--features_items-->

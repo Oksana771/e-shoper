@@ -1,0 +1,28 @@
+#header{
+   display: none;
+}
+
+#branding.initialized{
+   display: block;
+}
+
+.sidebar-section{
+   margin-top:50px ;
+}
+
+div.breadcrumbs{
+   min-height: 3.2rem;
+   background-color: #2b3647;
+}
+
+.dashboard-tools{
+   right: 18rem;
+}
+
+.dashboard-container.columns_3 .dashboard-column-wrapper {
+   width: 33%;
+}
+
+.dashboard #content {
+   width: 1250px;
+}

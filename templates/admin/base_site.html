@@ -1,0 +1,24 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block breadcrumbs%}
+{% block branding %}
+    <h1 id="head">
+        <img src="{% static 'images/home/logo.png' %}" alt="E-shoper logo"  class="brand_img" />
+    </h1>
+{% endblock %}
+{% endblock %}
+
+{%block shifted%}
+<div class="container"
+    <div class="row">
+        <h1>
+            TEST
+        </h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+{% endblock %}

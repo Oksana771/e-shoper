@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-
+from django.contrib.auth.models import User
 
 class Product(models.Model):
     tittle = models.CharField(max_length=200)
@@ -25,3 +25,4 @@ class Product(models.Model):
     def __str__(self):
 
         return self.tittle
+

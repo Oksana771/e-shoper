@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.conf import global_settings
+from django.contrib.messages import constants as messages
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,6 +44,15 @@ INSTALLED_APPS = [
     'pages',
     'product',
     'django_seed',
+    'jet.dashboard',
+    'jet',
+    'django.contrib.admin',
+    'cart'
+   
+    
+   
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -69,7 +81,9 @@ TEMPLATES = [
             ],
         },
     },
-]
+] 
+
+
 
 WSGI_APPLICATION = 'app.wsgi.application'
 
@@ -130,3 +144,15 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
+
+CART_SESSION_ID = 'cart'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "mikki07021994@gmail.com"
+EMAIL_HOST_PASSWORD = '-'
+EMAIL_USE_TLS = True
