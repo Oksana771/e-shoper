@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'jet.dashboard',
     'jet',
     'django.contrib.admin',
-    'cart'
-   
+    'cart',
+    'orders',
     
    
     
@@ -143,7 +143,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 CART_SESSION_ID = 'cart'
 

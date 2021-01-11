@@ -3,11 +3,12 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
+				  <li><a href="{% url 'index' %}">Home</a></li>
 				  <li class="active">Shopping Cart</li>
 				</ol>
             </div>
             {% if product %}
+			
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -22,18 +23,26 @@
 						</tr>
 					</thead>
 					<tbody>
-					<form action="{% url 'cart' product.id %}" method="POST">
+					
+					{% if user.is_authenticated %}
+					<form action="{% url 'cart' %}" method="POST"  enctype="multipart/form-data">
 						{% csrf_token %}
+					{% for product in product %}
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="{{ product.photo_main.url }}" alt="{{product.tittle}}"  width = 60px; height = auto;></a>
+							 	<input type="hidden" name="username" value='{{user.username }}' />
+								<a href=""><img src="{{ product.photo_main.url }}" alt="{{product.tittle}}"   width = 60px; height = auto;></a>
+								<input type="hidden" name="image" value="{{ product.photo_main.url }}" />
 							</td>
 							<td class="cart_description">
 								<h4>{{ product.tittle }}</h4>
-								<input type="hidden" name="title" value='{{ product.tittle }}'>
+								<input type="hidden" name="tittle" value='{{ product.tittle }}' />
+								<p>${{ product.price }}</p>
+								<input type="hidden" name="price" value="{{ product.price }}" />
 							</td>
 							<td class="cart_price">
 								<p>${{ product.sale }}</p>
+								<input type="hidden" name="sale" value="{{ product.sale }}" />
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -49,11 +58,16 @@
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 			</div>
 			<button type="submit" class="btn btn-success">Order</button>
+			{% else %}
+			<h1>Please, register or log in!!!</h1>
+            {% endif %}
 			</form>
+			
             {% else %}
             <div>
                 <h2>Your cart is empty.</h2>

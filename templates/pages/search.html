@@ -1,14 +1,16 @@
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
 <div class="features_items">
  
-  <h2 class="title text-center">Features Items</h2>
+  <h2 class="title text-center">Sort by category</h2>
 
-  {% if product %} {% for product in product %}
+  {% if product %} {% for product in search_category %}
   <div class="col-sm-4">
     <div class="product-image-wrapper">
       <div class="single-products">
         <div class="productinfo text-center">
-          <img src="{{ product.photo_main.url }}" alt="{{product.tittle}}" />
+          <img src="{{ product.photo_main.url }}" alt="{{product.tittle}}"  />
          
           <p>{{ product.category }}</p>
           <h2>${{ product.price }}</h2>
@@ -41,7 +43,7 @@
     {% else %}
      <li class="disabled"><a href="#">&laquo;</a></li>
     {% endif %}
-  {% for i in product.paginator.page_range %}
+  {% for i in search_category.paginator.page_range %}
     {% if listings.number == i %}
       <li class="page-item active" >
         <a  class="page-link">{{ i }}</a>
@@ -65,3 +67,6 @@
 </div>
 </div>
 <!--features_items-->
+{% endblock %}
+
+

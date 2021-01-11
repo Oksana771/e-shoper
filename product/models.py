@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 
 class Product(models.Model):
+    
     tittle = models.CharField(max_length=200)
     category = models.CharField(max_length=200)
     description = models.TextField(blank=True)
